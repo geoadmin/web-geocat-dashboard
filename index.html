@@ -17,7 +17,7 @@
 <body>
 
     <!-- Metadata Total Count  -->
-    <div id="metadata" class="container m-4">
+    <div id="metadata" class="container-fluid p-4">
         <h5 class="text-white">Metadata total count</h5>
         <div class="row m-0 mb-1">
             <div class="md-total bg-cyan text-center text-white"></div>
@@ -28,22 +28,51 @@
         </div>
     </div>
 
-    <br>
-
     <!-- Count by resource type  -->
-    <div id="resource-type" class="container m-4">
-        <h5 class="text-white">Metadata count by resource type</h5>
+    <div id="resource-type" class="container-fluid p-4">
+        <h5 class="text-white">Metadata by resource type</h5>
         <div class="row m-0 mb-1">
-            <div class="md-dataset md-resourcetype text-center text-white bg-cyan"></div>
+            <div class="md-dataset md-count-bar text-center text-white bg-cyan"></div>
         </div>
         <div class="row m-0 mb-1">
-            <div class="md-service md-resourcetype text-center text-white bg-salmon"></div>
+            <div class="md-service md-count-bar text-center text-white bg-salmon"></div>
         </div>
         <div class="row m-0 mb-1">
-            <div class="md-model md-resourcetype text-center text-white bg-cyan"></div>
+            <div class="md-model md-count-bar text-center text-white bg-cyan"></div>
         </div>
         <div class="row m-0 mb-1">
-            <div class="md-other md-resourcetype text-center text-white bg-salmon"></div>
+            <div class="md-other md-count-bar text-center text-white bg-salmon"></div>
+        </div>
+    </div>
+
+    <!-- Metadata used in other portal  -->
+    <div id="external-portal" class="container-fluid p-4">
+        <h5 class="text-white">Metadata used in other portals</h5>
+        <div class="row m-0 mb-1">
+            <div class="md-ods md-count-bar pl-3 text-white bg-cyan"></div>
+        </div>
+        <div class="row m-0 mb-1">
+            <div class="md-bgdi md-count-bar pl-3 text-white bg-salmon"></div>
+        </div>
+        <div class="row m-0 mb-1">
+            <div class="md-gdb md-count-bar pl-3 text-white bg-cyan" data-toggle="tooltip" title="Corresponds to geobasisdaten keyword"></div>
+        </div>
+    </div>
+
+    <!-- Metadata count by resource-->
+    <div id="distribution" class="container-fluid p-4">
+        <h5 class="text-white">Metadata by distribution</h5>
+        <div class="row m-0 mb-1">
+            <div class="md-link md-count-bar pl-3 text-white bg-cyan"></div>
+        </div>
+        <div class="row m-0 mb-1">
+            <div class="md-download md-count-bar pl-3 text-white bg-salmon"></div>
+        </div>
+        <div class="row m-0 mb-1">
+            <div class="md-api md-count-bar pl-3 text-white bg-cyan"></div>
+        </div>
+        <div class="row m-0 mb-1">
+            <div class="md-no-resource md-count-bar pl-3 text-white bg-salmon"></div>
         </div>
     </div>
 

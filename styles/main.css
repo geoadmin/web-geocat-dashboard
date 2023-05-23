@@ -28,9 +28,10 @@ body{
     overflow: auto;
 }
 
-.md-resourcetype{
+.md-count-bar{
     line-height: 40px;
     height: 40px;
     overflow: auto;
-    min-width: 100px;
+    white-space: nowrap;
+    min-width: 150px;
 }

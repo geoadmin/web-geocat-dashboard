@@ -66,7 +66,38 @@
                     },
                     "bgdi": {
                         "query_string": {
-                            "query": "+tag.default:(opendata.swiss)"
+                            "query": "tag.default:\"BGDI Bundesgeodaten-Infrastruktur\" OR tag.default:\"IFDG l’Infrastructure Fédérale de données géographiques\" OR tag.default:\"FSDI Federal Spatial Data Infrastructure\" OR tag.default:\"IFDG Infrastruttura federale dei dati geografici\""
+                        }
+                    },
+                    "gdb": {
+                        "query_string": {
+                            "query": "tag.default:\"Geobasisdaten\"|\"géodonnées de base\"|\"official geodata\"|\"geodati di base\""
+                        }
+                    }
+                }
+            }
+        },
+        "resource": {
+            "filters": {
+                "filters": {
+                    "link": {
+                        "query_string": {
+                            "query": "linkProtocol:/(WWW:LINK.*|MAP_Preview.*|CHTOPO:specialised-geoportal.*)/"
+                        }
+                    },
+                    "download": {
+                        "query_string": {
+                            "query": "linkProtocol:/WWW:DOWNLOAD.*/"
+                        }
+                    },
+                    "api": {
+                        "query_string": {
+                            "query": "linkProtocol:/(OGC:.*|ESRI:REST.*)/"
+                        }
+                    },
+                    "no_resource": {
+                        "query_string": {
+                            "query": "-_exists_:linkUrl"
                         }
                     }
                 }

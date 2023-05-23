@@ -1,3 +1,7 @@
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();
+});
+
 function updateMetadataTotalCount(data) {
   // Parse data object and retrieve metadata counts
   let md_total
@@ -60,6 +64,41 @@ function updateMetadataResouceTypeCount(data) {
   $(".md-other").css("width", (md_other/md_total)*100 + 20 + "%");
 }
 
+function updateMetadataExternalPortal(data) {
+  // Parse data object and retrieve metadata counts
+  let md_total=data.hits.total.value;
+  let md_bgdi = data.aggregations.tag.buckets.bgdi.doc_count;
+  let md_ods = data.aggregations.tag.buckets.ods.doc_count;
+  let md_gdb = data.aggregations.tag.buckets.gdb.doc_count;
+
+  // update html and css
+  $(".md-ods").text(stringifyNumber(md_ods) + " - opendata.swiss");
+  $(".md-ods").css("width", (md_ods/md_total)*100 + 20 + "%");
+  $(".md-bgdi").text(stringifyNumber(md_bgdi) + " - BGDI");
+  $(".md-bgdi").css("width", (md_bgdi/md_total)*100 + 20 + "%");
+  $(".md-gdb").text(stringifyNumber(md_gdb) + " - INSPIRE");
+  $(".md-gdb").css("width", (md_gdb/md_total)*100 + 20 + "%");
+}
+
+function updateMetadataByDistribution(data) {
+  // Parse data object and retrieve metadata counts
+  let md_total=data.hits.total.value;
+  let md_link = data.aggregations.resource.buckets.link.doc_count;
+  let md_download = data.aggregations.resource.buckets.download.doc_count;
+  let md_api = data.aggregations.resource.buckets.api.doc_count;
+  let md_no_resource = data.aggregations.resource.buckets.no_resource.doc_count;
+
+  // update html and css
+  $(".md-link").text(stringifyNumber(md_link) + " - Web link");
+  $(".md-link").css("width", (md_link/md_total)*100 + "%");
+  $(".md-download").text(stringifyNumber(md_download) + " - Download link");
+  $(".md-download").css("width", (md_download/md_total)*100 + "%");
+  $(".md-api").text(stringifyNumber(md_api) + " - Web services");
+  $(".md-api").css("width", (md_api/md_total)*100 + "%");
+  $(".md-no-resource").text(stringifyNumber(md_no_resource) + " - No distribution");
+  $(".md-no-resource").css("width", (md_no_resource/md_total)*100 + "%");
+}
+
 $.getJSON("data/search_body.json", function(json) {
 
     let md_total;
@@ -77,6 +116,8 @@ $.getJSON("data/search_body.json", function(json) {
         .then(json => {
           updateMetadataTotalCount(json);
           updateMetadataResouceTypeCount(json);
+          updateMetadataExternalPortal(json);
+          updateMetadataByDistribution(json);
         })
 });
 
