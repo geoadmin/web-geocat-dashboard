@@ -1,0 +1,78 @@
+{
+    "from": 0,
+    "query": {
+        "bool": {
+            "must": [
+                {
+                    "terms": {
+                        "isTemplate": [
+                            "n"
+                        ]
+                    }
+                }
+            ]
+        }
+    },
+    "aggregations": {
+        "resourceType": {
+            "terms": {
+                "field": "resourceType",
+                "size": 10,
+                "include": [
+                    "dataset",
+                    "service",
+                    "model"
+                ]
+            },
+            "meta": {
+                "field": "resourceType"
+            }
+        },
+        "groupOwner": {
+            "terms": {
+                "field": "groupOwner",
+                "size": 100,
+                "include": ".*",
+                "order": {
+                    "_key": "asc"
+                }
+            },
+            "meta": {
+                "orderByTranslation": true,
+                "displayFilter": true,
+                "filterByTranslation": true,
+                "collapsed": true,
+                "field": "groupOwner"
+            }
+        },
+        "isHarvested": {
+            "terms": {
+                "field": "isHarvested",
+                "size": 2
+            },
+            "meta": {
+                "userHasRole": "isAdministrator",
+                "collapsed": true,
+                "field": "isHarvested"
+            }
+        },
+        "tag": {
+            "filters": {
+                "filters": {
+                    "ods": {
+                        "query_string": {
+                            "query": "+tag.default:opendata.swiss"
+                        }
+                    },
+                    "bgdi": {
+                        "query_string": {
+                            "query": "+tag.default:(opendata.swiss)"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "size": 0,
+    "track_total_hits": true
+}

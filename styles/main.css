@@ -1,0 +1,39 @@
+body{
+    background-color: rgb(62, 62, 62);
+}
+
+.bg-cyan{
+    background-color: darkcyan;
+}
+
+.bg-salmon{
+    background-color: darksalmon;
+}
+
+.md-total{
+    background-color: darkcyan;
+    line-height: 40px;
+    height: 40px;
+    width: 100%;
+}
+
+.md-direct{
+    background-color: darkcyan;
+    line-height: 40px;
+    height: 40px;
+    overflow: auto;
+}
+
+.md-harvested{
+    background-color: darksalmon;
+    line-height: 40px;
+    height: 40px;
+    overflow: auto;
+}
+
+.md-resourcetype{
+    line-height: 40px;
+    height: 40px;
+    overflow: auto;
+    min-width: 100px;
+}
