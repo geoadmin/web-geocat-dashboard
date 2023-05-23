@@ -1,3 +1,4 @@
+// Enable BS4 tooltip
 $(document).ready(function(){
   $('[data-toggle="tooltip"]').tooltip();
 });
@@ -57,11 +58,11 @@ function updateMetadataResouceTypeCount(data) {
   $(".md-dataset").text(stringifyNumber(md_dataset) + " datasets");
   $(".md-dataset").css("width", (md_dataset/md_total)*100 + "%");
   $(".md-service").text(stringifyNumber(md_service) + " services");
-  $(".md-service").css("width", (md_service/md_total)*100 + 20 + "%");
+  $(".md-service").css("width", (md_service/md_total)*100 + "%");
   $(".md-model").text(stringifyNumber(md_model) + " models");
-  $(".md-model").css("width", (md_model/md_total)*100 + 20 + "%");
+  $(".md-model").css("width", (md_model/md_total)*100 + "%");
   $(".md-other").text(stringifyNumber(md_other) + " other");
-  $(".md-other").css("width", (md_other/md_total)*100 + 20 + "%");
+  $(".md-other").css("width", (md_other/md_total)*100 + "%");
 }
 
 function updateMetadataExternalPortal(data) {
@@ -73,11 +74,11 @@ function updateMetadataExternalPortal(data) {
 
   // update html and css
   $(".md-ods").text(stringifyNumber(md_ods) + " - opendata.swiss");
-  $(".md-ods").css("width", (md_ods/md_total)*100 + 20 + "%");
+  $(".md-ods").css("width", (md_ods/md_total)*100 + "%");
   $(".md-bgdi").text(stringifyNumber(md_bgdi) + " - BGDI");
-  $(".md-bgdi").css("width", (md_bgdi/md_total)*100 + 20 + "%");
+  $(".md-bgdi").css("width", (md_bgdi/md_total)*100 + "%");
   $(".md-gdb").text(stringifyNumber(md_gdb) + " - INSPIRE");
-  $(".md-gdb").css("width", (md_gdb/md_total)*100 + 20 + "%");
+  $(".md-gdb").css("width", (md_gdb/md_total)*100 + "%");
 }
 
 function updateMetadataByDistribution(data) {
@@ -99,6 +100,30 @@ function updateMetadataByDistribution(data) {
   $(".md-no-resource").css("width", (md_no_resource/md_total)*100 + "%");
 }
 
+function updateMetadataByAdminLevel(data) {
+  // Parse data object and retrieve metadata counts
+  let md_total=data.hits.total.value;
+  let md_national = data.aggregations.adminLevel.buckets.national.doc_count;
+  let md_cantonal = data.aggregations.adminLevel.buckets.cantonal.doc_count;
+  let md_cantonalCommunal = data.aggregations.adminLevel.buckets.cantonalCommunal.doc_count;
+  let md_communal = data.aggregations.adminLevel.buckets.communal.doc_count;
+  let md_other = md_total - md_national - md_cantonal - md_cantonalCommunal - md_communal;
+
+  // update html and css
+  $("#admin-level .md-national").text(stringifyNumber(md_national) + " - National");
+  $("#admin-level .md-national").css("width", (md_national/md_total)*100 + "%");
+  $("#admin-level .md-cantonal").text(stringifyNumber(md_cantonal) + " - Cantonal");
+  $("#admin-level .md-cantonal").css("width", (md_cantonal/md_total)*100 + "%");
+  $("#admin-level .md-cantonalCommunal").text(stringifyNumber(md_cantonalCommunal) + " - Cantonal & communal");
+  $("#admin-level .md-cantonalCommunal").css("width", (md_cantonalCommunal/md_total)*100 + "%");
+  $("#admin-level .md-communal").text(stringifyNumber(md_communal) + " - Communal");
+  $("#admin-level .md-communal").css("width", (md_communal/md_total)*100 + "%");
+  $("#admin-level .md-other").text(stringifyNumber(md_other) + " - Other");
+  $("#admin-level .md-other").css("width", (md_other/md_total)*100 + "%");
+}
+
+// Get ES API Body from json and run a POST request
+// Uses the reponse JSON to update the dashboard
 $.getJSON("data/search_body.json", function(json) {
 
     let md_total;
@@ -118,6 +143,7 @@ $.getJSON("data/search_body.json", function(json) {
           updateMetadataResouceTypeCount(json);
           updateMetadataExternalPortal(json);
           updateMetadataByDistribution(json);
+          updateMetadataByAdminLevel(json);
         })
 });
 
