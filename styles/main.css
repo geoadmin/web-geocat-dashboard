@@ -11,21 +11,18 @@ body{
 }
 
 .md-total{
-    background-color: darkcyan;
     line-height: 40px;
     height: 40px;
     width: 100%;
 }
 
 .md-direct{
-    background-color: darkcyan;
     line-height: 40px;
     height: 40px;
     overflow: auto;
 }
 
 .md-harvested{
-    background-color: darksalmon;
     line-height: 40px;
     height: 40px;
     overflow: auto;
