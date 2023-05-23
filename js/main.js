@@ -126,10 +126,6 @@ function updateMetadataByAdminLevel(data) {
 // Uses the reponse JSON to update the dashboard
 $.getJSON("data/search_body.json", function(json) {
 
-    let md_total;
-    let md_direct;
-    let md_harvested;
-
     fetch("https://www.geocat.ch/geonetwork/srv/api/search/records/_search", {
         method: "POST",
         body: JSON.stringify(json),
@@ -146,7 +142,3 @@ $.getJSON("data/search_body.json", function(json) {
           updateMetadataByAdminLevel(json);
         })
 });
-
-
-
-
