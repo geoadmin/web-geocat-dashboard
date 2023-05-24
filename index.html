@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="styles/main.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
+    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
     <title>geocat.ch Dashboard</title>
 </head>
@@ -31,68 +33,111 @@
     <!-- Count by resource type  -->
     <div id="resource-type" class="container-fluid p-4">
         <h5 class="text-white">Metadata by resource type</h5>
-        <div class="row m-0 mb-1">
-            <div class="md-dataset md-count-bar pl-3 text-white bg-cyan"></div>
-        </div>
-        <div class="row m-0 mb-1">
-            <div class="md-service md-count-bar pl-3 text-white bg-salmon"></div>
-        </div>
-        <div class="row m-0 mb-1">
-            <div class="md-model md-count-bar pl-3 text-white bg-cyan"></div>
-        </div>
-        <div class="row m-0 mb-1">
-            <div class="md-other md-count-bar pl-3 text-white bg-salmon"></div>
+        <div class="row m-0">
+            <div class="mr-3">
+                <p class="md-label m-0 mb-1">Dataset</p>
+                <p class="md-label m-0 mb-1">Service</p>
+                <p class="md-label m-0 mb-1">Model</p>
+                <p class="md-label m-0 mb-1">Other</p>
+            </div>
+            <div class="md-stat-container">
+                <div class="md-dataset md-count-bar pl-3 mb-1 text-white bg-cyan"></div>
+                <div class="md-service md-count-bar pl-3 mb-1 text-white bg-salmon"></div>
+                <div class="md-model md-count-bar pl-3 mb-1 text-white bg-cyan"></div>
+                <div class="md-other md-count-bar pl-3 mb-1 text-white bg-salmon"></div>
+            </div>
         </div>
     </div>
 
     <!-- Metadata used in other portal  -->
     <div id="external-portal" class="container-fluid p-4">
         <h5 class="text-white">Metadata used in other portals</h5>
-        <div class="row m-0 mb-1">
-            <div class="md-ods md-count-bar pl-3 text-white bg-cyan"></div>
-        </div>
-        <div class="row m-0 mb-1">
-            <div class="md-bgdi md-count-bar pl-3 text-white bg-salmon"></div>
-        </div>
-        <div class="row m-0 mb-1">
-            <div class="md-gdb md-count-bar pl-3 text-white bg-cyan" data-toggle="tooltip" title="Corresponds to geobasisdaten keyword"></div>
+        <div class="row m-0">
+            <div class="mr-3">
+                <p class="md-label m-0 mb-1">opendata.swiss</p>
+                <p class="md-label m-0 mb-1">BGDI</p>
+                <p class="md-label m-0 mb-1" data-toggle="tooltip" title="Corresponds to geobasisdaten keyword">INSPIRE <i class="fas fa-question-circle"></i></p>
+            </div>
+            <div class="md-stat-container">
+                <div class="md-ods md-count-bar pl-3 mb-1 text-white bg-cyan"></div>
+                <div class="md-bgdi md-count-bar pl-3 mb-1 text-white bg-salmon"></div>
+                <div class="md-gdb md-count-bar pl-3 mb-1 text-white bg-cyan"></div>
+            </div>
         </div>
     </div>
 
     <!-- Metadata count by resource-->
     <div id="distribution" class="container-fluid p-4">
         <h5 class="text-white">Metadata by distribution</h5>
-        <div class="row m-0 mb-1">
-            <div class="md-link md-count-bar pl-3 text-white bg-cyan"></div>
-        </div>
-        <div class="row m-0 mb-1">
-            <div class="md-download md-count-bar pl-3 text-white bg-salmon"></div>
-        </div>
-        <div class="row m-0 mb-1">
-            <div class="md-api md-count-bar pl-3 text-white bg-cyan"></div>
-        </div>
-        <div class="row m-0 mb-1">
-            <div class="md-no-resource md-count-bar pl-3 text-white bg-salmon"></div>
+        <div class="row m-0">
+            <div class="mr-3">
+                <p class="md-label m-0 mb-1">Web link</p>
+                <p class="md-label m-0 mb-1">Download link</p>
+                <p class="md-label m-0 mb-1">Web service</p>
+                <p class="md-label m-0 mb-1">No distribution</p>
+            </div>
+            <div class="md-stat-container">
+                <div class="md-link md-count-bar pl-3 mb-1 text-white bg-cyan"></div>
+                <div class="md-download md-count-bar pl-3 mb-1 text-white bg-salmon"></div>
+                <div class="md-api md-count-bar pl-3 mb-1 text-white bg-cyan"></div>
+                <div class="md-no-resource md-count-bar pl-3 mb-1 text-white bg-salmon"></div>
+            </div>
         </div>
     </div>
 
     <!-- Metadata count by admin level-->
     <div id="admin-level" class="container-fluid p-4">
         <h5 class="text-white">Metadata by administrative level</h5>
-        <div class="row m-0 mb-1">
-            <div class="md-national md-count-bar pl-3 text-white bg-cyan"></div>
+        <div class="row m-0">
+            <div class="mr-3">
+                <p class="md-label m-0 mb-1">National</p>
+                <p class="md-label m-0 mb-1">Cantonal</p>
+                <p class="md-label m-0 mb-1" data-toggle="tooltip" 
+                title="Some provider have cantonal and communal datasets and it's currently not possible to separate them">Cant./com. <i class="fas fa-question-circle"></i></p>
+                <p class="md-label m-0 mb-1">Communal</p>
+                <p class="md-label m-0 mb-1">Other</p>
+            </div>
+            <div class="md-stat-container">
+                <div class="md-national md-count-bar pl-3 mb-1 text-white bg-cyan"></div>
+                <div class="md-cantonal md-count-bar pl-3 mb-1 text-white bg-salmon"></div>
+                <div class="md-cantonalCommunal md-count-bar pl-3 mb-1 text-white bg-cyan"></div>
+                <div class="md-communal md-count-bar pl-3 mb-1 text-white bg-salmon"></div>
+                <div class="md-other md-count-bar pl-3 mb-1 text-white bg-cyan"></div>
+            </div>
         </div>
-        <div class="row m-0 mb-1">
-            <div class="md-cantonal md-count-bar pl-3 text-white bg-salmon"></div>
+    </div>
+
+    <!-- Metadata Updated-->
+    <div id="update" class="container-fluid p-4">
+        <h5 class="text-white">Updated metadata <i class="fas fa-question-circle" data-toggle="tooltip" 
+            title="updated metdata count only once in the given time period"></i></h5>
+        <div class="row m-0">
+            <div class="mr-3">
+                <p class="md-label m-0 mb-1">Last 30 days (direct)</p>
+                <p class="md-label m-0 mb-1">Last 30 days (harvest)</p>
+                <p class="md-label m-0 mb-1">YTD (direct)</p>
+                <p class="md-label m-0 mb-1">YTD (harvest)</p>
+            </div>
+            <div class="md-stat-container">
+                <div class="md-update-30-direct md-count-bar pl-3 mb-1 text-white bg-cyan"></div>
+                <div class="md-update-30-harv md-count-bar pl-3 mb-1 text-white bg-salmon"></div>
+                <div class="md-update-ytd-direct md-count-bar pl-3 mb-1 text-white bg-cyan"></div>
+                <div class="md-update-ytd-harv md-count-bar pl-3 mb-1 text-white bg-salmon"></div>
+            </div>
         </div>
-        <div class="row m-0 mb-1">
-            <div class="md-cantonalCommunal md-count-bar pl-3 text-white bg-cyan"></div>
-        </div>
-        <div class="row m-0 mb-1">
-            <div class="md-communal md-count-bar pl-3 text-white bg-salmon"></div>
-        </div>
-        <div class="row m-0 mb-1">
-            <div class="md-other md-count-bar pl-3 text-white bg-cyan"></div>
+    </div>
+
+    <!-- Group Count-->
+    <div id="group" class="container-fluid p-4">
+        <h5 class="text-white">Number of group</h5>
+        <div class="row m-0">
+            <div class="mr-3">
+                <p class="md-label m-0 mb-1" data-toggle="tooltip" 
+                title="Group with published metadata">With metadata <i class="fas fa-question-circle"></i></p>
+            </div>
+            <div class="gp-stat-container">
+                <div class="gp-metadata md-count-bar pl-3 mb-1 text-white bg-cyan"></div>
+            </div>
         </div>
     </div>
 

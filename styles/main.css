@@ -28,10 +28,28 @@ body{
     overflow: auto;
 }
 
+.md-label{
+    line-height: 40px;
+    height: 40px;
+    color: rgb(214, 214, 214);
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.md-stat-container{
+    width: calc(100% - 170px)
+}
+
+.gp-stat-container{
+    width: calc(30% - 150px);
+}
+
 .md-count-bar{
     line-height: 40px;
     height: 40px;
+    padding-right: 15px;
     overflow: auto;
     white-space: nowrap;
-    min-width: 150px;
+    min-width: max-content;
 }

@@ -55,13 +55,13 @@ function updateMetadataResouceTypeCount(data) {
   md_other = md_total - md_dataset - md_service - md_model
 
   // update html and css
-  $(".md-dataset").text(stringifyNumber(md_dataset) + " datasets");
+  $(".md-dataset").text(stringifyNumber(md_dataset));
   $(".md-dataset").css("width", (md_dataset/md_total)*100 + "%");
-  $(".md-service").text(stringifyNumber(md_service) + " services");
+  $(".md-service").text(stringifyNumber(md_service));
   $(".md-service").css("width", (md_service/md_total)*100 + "%");
-  $(".md-model").text(stringifyNumber(md_model) + " models");
+  $(".md-model").text(stringifyNumber(md_model));
   $(".md-model").css("width", (md_model/md_total)*100 + "%");
-  $(".md-other").text(stringifyNumber(md_other) + " other");
+  $(".md-other").text(stringifyNumber(md_other));
   $(".md-other").css("width", (md_other/md_total)*100 + "%");
 }
 
@@ -73,11 +73,11 @@ function updateMetadataExternalPortal(data) {
   let md_gdb = data.aggregations.tag.buckets.gdb.doc_count;
 
   // update html and css
-  $(".md-ods").text(stringifyNumber(md_ods) + " - opendata.swiss");
+  $(".md-ods").text(stringifyNumber(md_ods));
   $(".md-ods").css("width", (md_ods/md_total)*100 + "%");
-  $(".md-bgdi").text(stringifyNumber(md_bgdi) + " - BGDI");
+  $(".md-bgdi").text(stringifyNumber(md_bgdi));
   $(".md-bgdi").css("width", (md_bgdi/md_total)*100 + "%");
-  $(".md-gdb").text(stringifyNumber(md_gdb) + " - INSPIRE");
+  $(".md-gdb").text(stringifyNumber(md_gdb));
   $(".md-gdb").css("width", (md_gdb/md_total)*100 + "%");
 }
 
@@ -90,13 +90,13 @@ function updateMetadataByDistribution(data) {
   let md_no_resource = data.aggregations.resource.buckets.no_resource.doc_count;
 
   // update html and css
-  $(".md-link").text(stringifyNumber(md_link) + " - Web link");
+  $(".md-link").text(stringifyNumber(md_link));
   $(".md-link").css("width", (md_link/md_total)*100 + "%");
-  $(".md-download").text(stringifyNumber(md_download) + " - Download link");
+  $(".md-download").text(stringifyNumber(md_download));
   $(".md-download").css("width", (md_download/md_total)*100 + "%");
-  $(".md-api").text(stringifyNumber(md_api) + " - Web services");
+  $(".md-api").text(stringifyNumber(md_api));
   $(".md-api").css("width", (md_api/md_total)*100 + "%");
-  $(".md-no-resource").text(stringifyNumber(md_no_resource) + " - No distribution");
+  $(".md-no-resource").text(stringifyNumber(md_no_resource));
   $(".md-no-resource").css("width", (md_no_resource/md_total)*100 + "%");
 }
 
@@ -110,21 +110,86 @@ function updateMetadataByAdminLevel(data) {
   let md_other = md_total - md_national - md_cantonal - md_cantonalCommunal - md_communal;
 
   // update html and css
-  $("#admin-level .md-national").text(stringifyNumber(md_national) + " - National");
+  $("#admin-level .md-national").text(stringifyNumber(md_national));
   $("#admin-level .md-national").css("width", (md_national/md_total)*100 + "%");
-  $("#admin-level .md-cantonal").text(stringifyNumber(md_cantonal) + " - Cantonal");
+  $("#admin-level .md-cantonal").text(stringifyNumber(md_cantonal));
   $("#admin-level .md-cantonal").css("width", (md_cantonal/md_total)*100 + "%");
-  $("#admin-level .md-cantonalCommunal").text(stringifyNumber(md_cantonalCommunal) + " - Cantonal & communal");
+  $("#admin-level .md-cantonalCommunal").text(stringifyNumber(md_cantonalCommunal));
   $("#admin-level .md-cantonalCommunal").css("width", (md_cantonalCommunal/md_total)*100 + "%");
-  $("#admin-level .md-communal").text(stringifyNumber(md_communal) + " - Communal");
+  $("#admin-level .md-communal").text(stringifyNumber(md_communal));
   $("#admin-level .md-communal").css("width", (md_communal/md_total)*100 + "%");
-  $("#admin-level .md-other").text(stringifyNumber(md_other) + " - Other");
+  $("#admin-level .md-other").text(stringifyNumber(md_other));
   $("#admin-level .md-other").css("width", (md_other/md_total)*100 + "%");
 }
 
-// Get ES API Body from json and run a POST request
-// Uses the reponse JSON to update the dashboard
+function updateGroupCount(data) {
+  // Parse data object and retrieve metadata counts
+  let gp_metadata = data.aggregations.groupOwner.buckets.length;
+
+  // update html and css
+  $("#group .gp-metadata").text(stringifyNumber(gp_metadata));
+}
+
+function updateMetadataUpdate(data) {
+  // Parse data object and retrieve metadata counts
+  let md_total=data.hits.total.value;
+  let md_30NotHarv = data.aggregations.update.buckets.last30daysNotHarv.doc_count;
+  let md_30Harv = data.aggregations.update.buckets.last30daysHarv.doc_count;
+  let md_ytdNotHarv = data.aggregations.update.buckets.ytdNotHarv.doc_count;
+  let md_ytdHarv = data.aggregations.update.buckets.ytdHarv.doc_count;
+  
+  let year = new Date().getFullYear()
+  let startDate = new Date("01/01/" + year);
+  let endDate = new Date();
+  let difference = endDate.getTime() - startDate.getTime();
+  let days = Math.ceil(difference / (1000 * 3600 * 24));
+
+
+  // update html and css
+  $("#update .md-update-30-direct").text(stringifyNumber(md_30NotHarv) + " (" + Math.round(md_30NotHarv/30) + "/day)");
+  $("#update .md-update-30-direct").css("width", (md_30NotHarv/md_total)*100 + "%");
+  $("#update .md-update-30-harv").text(stringifyNumber(md_30Harv) + " (" + Math.round(md_30Harv/30) + "/day)");
+  $("#update .md-update-30-harv").css("width", (md_30Harv/md_total)*100 + "%");
+  $("#update .md-update-ytd-direct").text(stringifyNumber(md_ytdNotHarv) + " (" + Math.round(md_ytdNotHarv/days) + "/day)");
+  $("#update .md-update-ytd-direct").css("width", (md_ytdNotHarv/md_total)*100 + "%");
+  $("#update .md-update-ytd-harv").text(stringifyNumber(md_ytdHarv) + " (" + Math.round(md_ytdHarv/days) + "/day)");
+  $("#update .md-update-ytd-harv").css("width", (md_ytdHarv/md_total)*100 + "%");
+}
+
+function addSearchQueryUpdatedMetadata(body){
+
+  let date = new Date()
+
+  // Last 30 days
+  let endDate = date.toJSON().slice(0, 10);
+  date.setDate(date.getDate() - 30);
+  let startDate = date.toJSON().slice(0, 10);
+  let interval = "[" + startDate + " TO " + endDate + "]";
+  body.aggregations.update.filters.filters.last30daysNotHarv.query_string.query = (
+    body.aggregations.update.filters.filters.last30daysNotHarv.query_string.query.replace(/interval/g, interval)
+  );
+  body.aggregations.update.filters.filters.last30daysHarv.query_string.query = (
+    body.aggregations.update.filters.filters.last30daysHarv.query_string.query.replace(/interval/g, interval)
+  );
+
+  // YTD
+  startDate = new Date().getFullYear() + "-01-01"
+  interval = "[" + startDate + " TO " + endDate + "]";
+  body.aggregations.update.filters.filters.ytdNotHarv.query_string.query = (
+    body.aggregations.update.filters.filters.ytdNotHarv.query_string.query.replace(/interval/g, interval)
+  );
+  body.aggregations.update.filters.filters.ytdHarv.query_string.query = (
+    body.aggregations.update.filters.filters.ytdHarv.query_string.query.replace(/interval/g, interval)
+  );  
+
+  return body;
+
+}
+
+// POST _search query for metadata
 $.getJSON("data/search_body.json", function(json) {
+
+    addSearchQueryUpdatedMetadata(json);
 
     fetch("https://www.geocat.ch/geonetwork/srv/api/search/records/_search", {
         method: "POST",
@@ -140,5 +205,7 @@ $.getJSON("data/search_body.json", function(json) {
           updateMetadataExternalPortal(json);
           updateMetadataByDistribution(json);
           updateMetadataByAdminLevel(json);
+          updateGroupCount(json);
+          updateMetadataUpdate(json);
         })
 });

@@ -32,17 +32,7 @@
             "terms": {
                 "field": "groupOwner",
                 "size": 100,
-                "include": ".*",
-                "order": {
-                    "_key": "asc"
-                }
-            },
-            "meta": {
-                "orderByTranslation": true,
-                "displayFilter": true,
-                "filterByTranslation": true,
-                "collapsed": true,
-                "field": "groupOwner"
+                "exclude": ["-1", "0", "1", "17", "42", "55"]
             }
         },
         "isHarvested": {
@@ -128,8 +118,33 @@
                     }
                 }
             }
+        },
+        "update": {
+            "filters": {
+                "filters": {
+                    "last30daysNotHarv": {
+                        "query_string": {
+                            "query": "creationDateForResource:interval OR revisionDateForResource:interval OR publicationDateForResource:interval OR dateStamp:interval AND isHarvested:false"
+                        }
+                    },
+                    "last30daysHarv": {
+                        "query_string": {
+                            "query": "creationDateForResource:interval OR revisionDateForResource:interval OR publicationDateForResource:interval OR dateStamp:interval AND isHarvested:true"
+                        }
+                    },
+                    "ytdNotHarv": {
+                        "query_string": {
+                            "query": "creationDateForResource:interval OR revisionDateForResource:interval OR publicationDateForResource:interval OR dateStamp:interval AND isHarvested:false"
+                        }
+                    },
+                    "ytdHarv": {
+                        "query_string": {
+                            "query": "creationDateForResource:interval OR revisionDateForResource:interval OR publicationDateForResource:interval OR dateStamp:interval AND isHarvested:true"
+                        }
+                    }
+                }
+            }
         }
-        
     },
     "size": 0,
     "track_total_hits": true
