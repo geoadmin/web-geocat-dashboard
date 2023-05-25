@@ -61,7 +61,7 @@
                     },
                     "gdb": {
                         "query_string": {
-                            "query": "tag.default:\"Geobasisdaten\"|\"géodonnées de base\"|\"official geodata\"|\"geodati di base\""
+                            "query": "tag.default:/(Geobasisdaten|géodonnées de base|official geodata|geodati di base)/"
                         }
                     }
                 }
@@ -72,7 +72,7 @@
                 "filters": {
                     "link": {
                         "query_string": {
-                            "query": "linkProtocol:/(WWW:LINK.*|MAP_Preview.*|CHTOPO:specialised-geoportal.*)/"
+                            "query": "linkProtocol:/(WWW:LINK.*|MAP:Preview.*|CHTOPO:specialised-geoportal.*)/"
                         }
                     },
                     "download": {
@@ -98,7 +98,7 @@
                 "filters": {
                     "national": {
                         "query_string": {
-                            "query": "groupOwner:/(6|8|22|23|25|26|27|34|36|37|38|39|41|50|51|52|53|69|6436437|19444118|19647867|26805108|29125806|50000009|13)/"
+                            "query": "groupOwner:/(6|8|22|23|25|26|27|34|36|37|38|39|41|50|51|52|53|69|6436437|19444118|19647867|26805108|29125806|50000009)/"
                         }
                     },
                     "cantonal": {
@@ -113,7 +113,7 @@
                     },
                     "communal": {
                         "query_string": {
-                            "query": "groupOwner:/(18|21|49|54|34838580|35747878|35783993|38021751|41625764|43006540|50000006)/"
+                            "query": "groupOwner:/(13|18|21|49|54|34838580|35747878|35783993|38021751|41625764|43006540|50000006)/"
                         }
                     }
                 }
@@ -144,6 +144,12 @@
                     }
                 }
             }
+        },
+        "creationDate": {
+            "date_histogram": {
+                "field": "createDate",
+                "calendar_interval": "year"
+              }
         }
     },
     "size": 0,

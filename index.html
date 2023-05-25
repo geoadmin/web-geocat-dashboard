@@ -18,6 +18,8 @@
 
 <body>
 
+    <h6 class="onlyPrint datestamp text-white pt-4 pl-4">Date stamp : </h6>
+
     <!-- Metadata Total Count  -->
     <div id="metadata" class="container-fluid p-4">
         <h5 class="text-white">Metadata total count</h5>
@@ -35,10 +37,10 @@
         <h5 class="text-white">Metadata by resource type</h5>
         <div class="row m-0">
             <div class="mr-3">
-                <p class="md-label m-0 mb-1">Dataset</p>
-                <p class="md-label m-0 mb-1">Service</p>
-                <p class="md-label m-0 mb-1">Model</p>
-                <p class="md-label m-0 mb-1">Other</p>
+                <p class="md-label m-0 mb-1"><a href="https://www.geocat.ch/geonetwork/srv/fre/catalog.search#/search?any=q(resourceType:dataset)" target="_blank">Dataset</a></p>
+                <p class="md-label m-0 mb-1"><a href="https://www.geocat.ch/geonetwork/srv/fre/catalog.search#/search?any=q(resourceType:service)" target="_blank">Service</a></p>
+                <p class="md-label m-0 mb-1"><a href="https://www.geocat.ch/geonetwork/srv/fre/catalog.search#/search?any=q(resourceType:model)" target="_blank">Model</a></p>
+                <p class="md-label m-0 mb-1"><a href="https://www.geocat.ch/geonetwork/srv/fre/catalog.search#/search?any=q(-resourceType:/(dataset|service|model)/)" target="_blank">Other</a></p>
             </div>
             <div class="md-stat-container">
                 <div class="md-dataset md-count-bar pl-3 mb-1 text-white bg-cyan"></div>
@@ -54,9 +56,9 @@
         <h5 class="text-white">Metadata used in other portals</h5>
         <div class="row m-0">
             <div class="mr-3">
-                <p class="md-label m-0 mb-1">opendata.swiss</p>
-                <p class="md-label m-0 mb-1">BGDI</p>
-                <p class="md-label m-0 mb-1" data-toggle="tooltip" title="Corresponds to geobasisdaten keyword">INSPIRE <i class="fas fa-question-circle"></i></p>
+                <p class="md-label m-0 mb-1"><a href="https://www.geocat.ch/geonetwork/srv/fre/catalog.search#/search?any=q(tag.default:opendata.swiss)" target="_blank">opendata.swiss</a></p>
+                <p class="md-label m-0 mb-1" data-toggle="tooltip" title="Federal Spatial Data Infrastructure"><a href="https://www.geocat.ch/geonetwork/srv/fre/catalog.search#/search?any=q(tag.default:/(BGDI Bundesgeodaten-Infrastruktur|IFDG l’Infrastructure Fédérale de données géographiques|FSDI Federal Spatial Data Infrastructure|IFDG Infrastruttura federale dei dati geografici)/)" target="_blank">FSDI</a> <i class="fas fa-question-circle"></i></p>
+                <p class="md-label m-0 mb-1" data-toggle="tooltip" title="Corresponds to geobasisdaten keyword"><a href="https://www.geocat.ch/geonetwork/srv/fre/catalog.search#/search?any=q(tag.default:/(Geobasisdaten|géodonnées de base|official geodata|geodati di base)/)" target="_blank">INSPIRE</a> <i class="fas fa-question-circle"></i></p>
             </div>
             <div class="md-stat-container">
                 <div class="md-ods md-count-bar pl-3 mb-1 text-white bg-cyan"></div>
@@ -71,10 +73,10 @@
         <h5 class="text-white">Metadata by distribution</h5>
         <div class="row m-0">
             <div class="mr-3">
-                <p class="md-label m-0 mb-1">Web link</p>
-                <p class="md-label m-0 mb-1">Download link</p>
-                <p class="md-label m-0 mb-1">Web service</p>
-                <p class="md-label m-0 mb-1">No distribution</p>
+                <p class="md-label m-0 mb-1"><a href="https://www.geocat.ch/geonetwork/srv/fre/catalog.search#/search?any=q(linkProtocol:/(WWW:LINK.*|MAP:Preview.*|CHTOPO:specialised-geoportal.*)/)" target="_blank">HTTP link</a></p>
+                <p class="md-label m-0 mb-1"><a href="https://www.geocat.ch/geonetwork/srv/fre/catalog.search#/search?any=q(linkProtocol:/WWW:DOWNLOAD.*/)" target="_blank">Download link</a></p>
+                <p class="md-label m-0 mb-1"><a href="https://www.geocat.ch/geonetwork/srv/fre/catalog.search#/search?any=q(linkProtocol:/(OGC:.*|ESRI:REST.*)/)" target="_blank">Web service</a></p>
+                <p class="md-label m-0 mb-1"><a href="https://www.geocat.ch/geonetwork/srv/fre/catalog.search#/search?any=q(-_exists_:linkUrl)" target="_blank">No distribution</a></p>
             </div>
             <div class="md-stat-container">
                 <div class="md-link md-count-bar pl-3 mb-1 text-white bg-cyan"></div>
@@ -90,12 +92,18 @@
         <h5 class="text-white">Metadata by administrative level</h5>
         <div class="row m-0">
             <div class="mr-3">
-                <p class="md-label m-0 mb-1">National</p>
-                <p class="md-label m-0 mb-1">Cantonal</p>
+                <p class="md-label m-0 mb-1"><a href="https://www.geocat.ch/geonetwork/srv/fre/catalog.search#/search?any=q(groupOwner:/(6|8|22|23|25|26|27|34|36|37|38|39|41|50|51|52|53|69|6436437|19444118|19647867|26805108|29125806|50000009)/)" target="_blank">Federal</a></p>
+                <p class="md-label m-0 mb-1"><a href="https://www.geocat.ch/geonetwork/srv/fre/catalog.search#/search?any=q(groupOwner:/(3|5|7|16|19|20|24|63|68|70|13572546|29404416|34799060|34839862|34946859|34965961|36339858|36339859|50000004|50000005|50000008)/)" target="_blank">Cantonal</a></p>
                 <p class="md-label m-0 mb-1" data-toggle="tooltip" 
-                title="Some provider have cantonal and communal datasets and it's currently not possible to separate them">Cant./com. <i class="fas fa-question-circle"></i></p>
-                <p class="md-label m-0 mb-1">Communal</p>
-                <p class="md-label m-0 mb-1">Other</p>
+                    title="Some provider have cantonal and communal datasets and it's currently not possible to separate them">
+                    <a href="https://www.geocat.ch/geonetwork/srv/fre/catalog.search#/search?any=q(groupOwner:/(50000003|34923929|39285840|40514879)/)" target="_blank">Cant./com.</a>
+                    <i class="fas fa-question-circle"></i>
+                </p>
+                <p class="md-label m-0 mb-1"><a href="https://www.geocat.ch/geonetwork/srv/fre/catalog.search#/search?any=q(groupOwner:/(13|18|21|49|54|34838580|35747878|35783993|38021751|41625764|43006540|50000006)/)" target="_blank">Communal</a></p>
+                <p class="md-label m-0 mb-1" data-toggle="tooltip" title="Research, private sector, education, foundation, Liechtenstein">
+                    <a href="https://www.geocat.ch/geonetwork/srv/fre/catalog.search#/search?any=q(-groupOwner:/(13|18|21|49|54|34838580|35747878|35783993|38021751|41625764|43006540|50000006|50000003|34923929|39285840|40514879|3|5|7|16|19|20|24|63|68|70|13572546|29404416|34799060|34839862|34946859|34965961|36339858|36339859|50000004|50000005|50000008|6|8|22|23|25|26|27|34|36|37|38|39|41|50|51|52|53|69|6436437|19444118|19647867|26805108|29125806|50000009)/)" target="_blank">Other</a> 
+                    <i class="fas fa-question-circle"></i>
+                </p>
             </div>
             <div class="md-stat-container">
                 <div class="md-national md-count-bar pl-3 mb-1 text-white bg-cyan"></div>
@@ -116,8 +124,8 @@
             <div class="mr-3">
                 <p class="md-label m-0 mb-1">Last 30 days (direct)</p>
                 <p class="md-label m-0 mb-1">Last 30 days (harvest)</p>
-                <p class="md-label m-0 mb-1">YTD (direct)</p>
-                <p class="md-label m-0 mb-1">YTD (harvest)</p>
+                <p class="md-label m-0 mb-1">Year to date (direct)</p>
+                <p class="md-label m-0 mb-1">Year to date (harvest)</p>
             </div>
             <div class="md-stat-container">
                 <div class="md-update-30-direct md-count-bar pl-3 mb-1 text-white bg-cyan"></div>
@@ -130,7 +138,7 @@
 
     <!-- Group Count-->
     <div id="group" class="container-fluid p-4">
-        <h5 class="text-white">Number of group</h5>
+        <h5 class="text-white">Number of group / catalogue</h5>
         <div class="row m-0">
             <div class="mr-3">
                 <p class="md-label m-0 mb-1" data-toggle="tooltip" 

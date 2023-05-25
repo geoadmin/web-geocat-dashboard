@@ -3,6 +3,9 @@ $(document).ready(function(){
   $('[data-toggle="tooltip"]').tooltip();
 });
 
+// Update time stamp page for PDF print
+$(".datestamp").append(new Date().toLocaleDateString('en-GB'))
+
 function updateMetadataTotalCount(data) {
   // Parse data object and retrieve metadata counts
   let md_total
@@ -154,36 +157,6 @@ function updateMetadataUpdate(data) {
   $("#update .md-update-ytd-direct").css("width", (md_ytdNotHarv/md_total)*100 + "%");
   $("#update .md-update-ytd-harv").text(stringifyNumber(md_ytdHarv) + " (" + Math.round(md_ytdHarv/days) + "/day)");
   $("#update .md-update-ytd-harv").css("width", (md_ytdHarv/md_total)*100 + "%");
-}
-
-function addSearchQueryUpdatedMetadata(body){
-
-  let date = new Date()
-
-  // Last 30 days
-  let endDate = date.toJSON().slice(0, 10);
-  date.setDate(date.getDate() - 30);
-  let startDate = date.toJSON().slice(0, 10);
-  let interval = "[" + startDate + " TO " + endDate + "]";
-  body.aggregations.update.filters.filters.last30daysNotHarv.query_string.query = (
-    body.aggregations.update.filters.filters.last30daysNotHarv.query_string.query.replace(/interval/g, interval)
-  );
-  body.aggregations.update.filters.filters.last30daysHarv.query_string.query = (
-    body.aggregations.update.filters.filters.last30daysHarv.query_string.query.replace(/interval/g, interval)
-  );
-
-  // YTD
-  startDate = new Date().getFullYear() + "-01-01"
-  interval = "[" + startDate + " TO " + endDate + "]";
-  body.aggregations.update.filters.filters.ytdNotHarv.query_string.query = (
-    body.aggregations.update.filters.filters.ytdNotHarv.query_string.query.replace(/interval/g, interval)
-  );
-  body.aggregations.update.filters.filters.ytdHarv.query_string.query = (
-    body.aggregations.update.filters.filters.ytdHarv.query_string.query.replace(/interval/g, interval)
-  );  
-
-  return body;
-
 }
 
 // POST _search query for metadata
